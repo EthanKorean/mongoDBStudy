@@ -1,0 +1,39 @@
+출처 : https://velopert.com/516
+본문에 data샘플이 있으니 참조할것
+
+
+
+# find().sort( DOCUMENT )
+ - 데이터를 정렬할 때 사용. 매개변수로는 어떤 KEY 를 사용하여 정렬 할 지 알려주는 document 를 전달
+ - document 의 구조
+  -- { KEY: value }
+  -- KEY 는 데이터의 field 이름이고
+  -- value 의 값은 1 혹은 -1 입니다. 
+    --- 이 값을 1로 설정하면 오름차순
+    --- -1로 하면 내림차순으로 정렬합니다.
+ - 예제
+  -- _id 의 값을 사용하여 오름차순으로 정렬하기
+	> db.orders.find().sort( { "_id": 1 } )
+  -- amount 값을 사용하여 오름차순으로 정렬하고, 정렬한 값에서 id 값은 내림차순으로 정렬하기
+	> db.orders.find().sort( { "amount": 1, "_id": -1 } )
+
+# find().limit( value )
+ - 데이터 갯수를 제한할 때 사용
+ - value 파라미터는 출력 할 갯수 값 
+ - 예제
+  -- 출력 할 갯수를 3개로 제한하기
+	> db.orders.find().limit(3)
+	
+# find().skip(value)
+ - 출력 할 데이터의 시작부분을 설정할 때 사용
+ - value 값 갯수의 데이터를 생략하고 그 다음부터 출력
+ - 예제
+  -- 2개의 데이터를 생략하고 그 다음부터 출력
+	> db.orders.find().skip(2)
+
+# 응용
+ - order 를 최신순으로 한 페이지당 2개씩 나타냅니다.
+	var showPage = function(page){
+		return db.orders.find().sort( { "_id": -1 } ).skip((page-1)*2).limit(2);
+	}
+	
