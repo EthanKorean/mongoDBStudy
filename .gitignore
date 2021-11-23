@@ -2,3 +2,4 @@ java/target/
 java/.settings/
 java/.classpath
 java/.project
+java/src/main/Main.java
