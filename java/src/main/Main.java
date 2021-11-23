@@ -1,16 +1,17 @@
-package java;
+package main;
+
+import common.dao.Connection;
 
 /**
- * ÇÁ·ÎÁ§Æ® ½ÃÀÛÇÏ´Â °æ·Î <br/>
- * 1. °¢ÀÚ °³ÀÎº° package¸¦ ¸¸µé¾î¼­ °³¹ß<br/>
- * 2. ÇØ´ç ÀÚ¹ÙÆÄÀÏÀº  git clone ÇÑ ÀÌÈÄ ingore¿¡ Ãß°¡ÇÒ °Í<br/>
- * @author ±è´ëÇö
+ *  í”„ë¡œì íŠ¸ ì‹œì‘í•˜ëŠ” í´ë˜ìŠ¤<br/>
+ * 1. ê°ì ê°œì¸ì´ë¦„ìœ¼ë¡œ packageë¶„ë¦¬í• ê²ƒ<br/>
+ * 2. í•´ë‹¹ classëŠ” cloneì´í›„ ignoreì— ì¶”ê°€í•´ì£¼ì„¸ìš”<br/>
  */
 public class Main {
 
 	public static void main(String[] args) {
-		
-		
+		System.out.println("Start");
+		Connection con = Connection.getInstance();
 	}//main
 	
 }//class 
