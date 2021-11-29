@@ -14,17 +14,18 @@ import common.props.vo.ConnectionVO;
 
 public class Connection {
 
-	private static Connection con;
-	
 	public static Connection getInstance() {
-		if(con==null) {
-			con = new Connection();
-		}//end if
-		return con;
+		return ConnectionInstance.instance;
 	}//getInstance
+	
+	private static class ConnectionInstance{
+		private static final Connection instance = new Connection();
+	}//class
+	
 	private MongoClient mongoClient;
 	private MongoDatabase mongoDatabase;
-	private void connect() {
+	
+	public MongoDatabase connect() {
 		
 		try {
 			ConnectionVO cvo = PropertiesUtil.getInstance().getConnectionVO();
@@ -34,8 +35,13 @@ public class Connection {
 			System.err.println("wrong setting");
 			err.printStackTrace();
 		}//end catch
+		return mongoDatabase;
 	}//Connection
 	
-
+	public void close() {
+		if(mongoClient!=null) {
+			mongoClient.close();
+		}//end if
+	}//end close
 	
 }//class
